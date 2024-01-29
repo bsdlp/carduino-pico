@@ -1,5 +1,7 @@
 #include <Arduino.h>
 #include <Pins.h>
+#include <Movement.h>
+#include <pico/stdlib.h>
 #include <hardware/pwm.h>
 #include <JoystickBLE.h>
 
@@ -9,7 +11,7 @@ void setupPwmPin(uint pin);
 
 void setupPwmPin(uint pin)
 {
-  pinMode(pin, OUTPUT);
+  gpio_set_function(pin, GPIO_FUNC_PWM);
 
   int pwmSlice = pwm_gpio_to_slice_num(pin);
 
@@ -25,9 +27,6 @@ void setupPwmPin(uint pin)
 
   // Re-enable the PWM slice
   pwm_set_enabled(pwmSlice, true);
-
-  // Set the duty cycle (e.g., 50%)
-  pwm_set_gpio_level(pin, MOTOR_WRAP_VALUE / 2);
 }
 
 void setPinModes()
@@ -63,4 +62,8 @@ void setup()
 void loop()
 {
   // put your main code here, to run repeatedly:
+  forward();
+  delay(1000);
+  fullstop();
+  delay(1000);
 }
