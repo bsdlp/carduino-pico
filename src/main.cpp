@@ -51,10 +51,6 @@ void setPinModes()
 
 void setup()
 {
-  // pwm frequency at 1500hz
-  analogWriteFreq(MOTOR_ENABLE_FREQ);
-  analogWriteRange(MOTOR_MAX_DUTY_CYCLE);
-
   setPinModes();
   setupPwmPin(MOTOR_LEFT_FRONT_ENABLE);
   setupPwmPin(MOTOR_RIGHT_FRONT_ENABLE);
