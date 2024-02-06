@@ -62,8 +62,6 @@ void setup()
 void loop()
 {
   // put your main code here, to run repeatedly:
-  forward();
-  delay(1000);
-  fullstop();
+  set_speed(MOTOR_LEFT_FRONT_ENABLE, 100);
   delay(1000);
 }
