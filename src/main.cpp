@@ -64,4 +64,6 @@ void loop()
   // put your main code here, to run repeatedly:
   set_speed(MOTOR_LEFT_FRONT_ENABLE, 100);
   delay(1000);
+  set_speed(MOTOR_LEFT_FRONT_ENABLE, 0);
+  delay(200);
 }
