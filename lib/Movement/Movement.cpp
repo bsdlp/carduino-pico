@@ -1,10 +1,10 @@
 #include <Movement.h>
 #include <Pins.h>
-#include <pico/stdlib.h>
-#include <cstdlib>
-#include <hardware/pwm.h>
+#include <map>
+#include <string>
+#include <Arduino.h>
 
-void set_speed(unsigned int motor, int speed)
+void set_speed(uint8_t motor, int64_t speed)
 {
 	// TODO: look up the correct pins for motors based on motor number
 	if (speed > 0)
@@ -14,7 +14,8 @@ void set_speed(unsigned int motor, int speed)
 			digitalWrite(in1, LOW);
 			digitalWrite(in2, HIGH);
 		*/
-		gpio_put(motor, true);
+		digitalWrite(Motors[motor].input1, HIGH);
+		digitalWrite(Motors[motor].input2, LOW);
 	}
 	else
 	{
@@ -23,10 +24,11 @@ void set_speed(unsigned int motor, int speed)
 			digitalWrite(in1, HIGH);
 			digitalWrite(in2, LOW);
 		*/
-		gpio_put(motor, false);
+		digitalWrite(Motors[motor].input1, LOW);
+		digitalWrite(Motors[motor].input2, HIGH);
 	}
 
 	// set the speed of the motor
 	// 0-255
-	pwm_set_gpio_level(motor, abs(speed));
+	analogWrite(Motors[motor].enable, abs(speed));
 }

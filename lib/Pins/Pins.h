@@ -1,9 +1,10 @@
 #ifndef PINS_H
 #define PINS_H
 
-// motor pins
+#include <cstdint>
+#include <map>
 
-// TODO: the input pins need to be correctly ordered
+// motor pins
 
 // left front
 #define MOTOR_LEFT_FRONT_ENABLE 10
@@ -25,10 +26,13 @@
 #define MOTOR_RIGHT_REAR_INPUT_1 17
 #define MOTOR_RIGHT_REAR_INPUT_2 18
 
-// all enable
-#define ALL_MOTOR_ENABLE_MASK ((1 << MOTOR_LEFT_FRONT_ENABLE) | (1 << MOTOR_LEFT_REAR_ENABLE) | (1 << MOTOR_RIGHT_FRONT_ENABLE) | (1 << MOTOR_RIGHT_REAR_ENABLE))
+struct MotorPins
+{
+	uint8_t input1;
+	uint8_t input2;
+	uint8_t enable;
+};
 
-// all input
-#define ALL_MOTOR_INPUT_MASK ((1 << MOTOR_LEFT_FRONT_INPUT_1) | (1 << MOTOR_LEFT_FRONT_INPUT_2) | (1 << MOTOR_LEFT_REAR_INPUT_1) | (1 << MOTOR_LEFT_REAR_INPUT_2) | (1 << MOTOR_RIGHT_FRONT_INPUT_1) | (1 << MOTOR_RIGHT_FRONT_INPUT_2) | (1 << MOTOR_RIGHT_REAR_INPUT_1) | (1 << MOTOR_RIGHT_REAR_INPUT_2))
+extern std::map<uint8_t, MotorPins> Motors;
 
 #endif // PINS_H

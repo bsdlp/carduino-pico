@@ -1,8 +1,10 @@
 #ifndef MOVEMENT_H
 #define MOVEMENT_H
 
+#include <cstdint>
+
 // movement functions
-void set_speed(unsigned int motor_pin, int speed);
+void set_speed(uint8_t motor_pin, int64_t speed);
 
 // pwm stuff
 // for more on what the values mean: https://forums.raspberrypi.com/viewtopic.php?t=309632
